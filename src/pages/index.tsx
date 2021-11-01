@@ -8,6 +8,7 @@ const Home: NextPage = () => {
   const addTodo = (todoItem: string) => setTodos([...todos, todoItem]);
   return <>
     <Todos todos={todos} changeTodos={(t: string[]) => setTodos(t)} />
+    <AddTodo addTodo={addTodo} />
   </>
 }
 
