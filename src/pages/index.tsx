@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   const [filmList, setFilms] = useState<string[]>(['film1', 'film2']);
   const addFilm = (film: string) => setFilms([...filmList, film]);
   return <>
-    <Films films={filmList} changeTodos={(t: string[]) => setFilms(t)} />
+    <Films films={filmList} updateList={(t: string[]) => setFilms(t)} />
     <AddFilm addFilm={addFilm} />
   </>
 }
