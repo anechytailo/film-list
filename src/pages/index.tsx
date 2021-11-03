@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import type { NextPage } from 'next'
-import Todos from '../components/Todos'
-import AddTodo from '../components/AddTodo';
+import Films from '../components/Films'
+import AddFilm from '../components/AddFilm'
 
 const Home: NextPage = () => {
-  const [todos, setTodos] = useState<string[]>(['film1', 'film2']);
-  const addTodo = (todoItem: string) => setTodos([...todos, todoItem]);
+  const [filmList, setFilms] = useState<string[]>(['film1', 'film2']);
+  const addFilm = (film: string) => setFilms([...filmList, film]);
   return <>
-    <Todos todos={todos} changeTodos={(t: string[]) => setTodos(t)} />
-    <AddTodo addTodo={addTodo} />
+    <Films films={filmList} changeTodos={(t: string[]) => setFilms(t)} />
+    <AddFilm addFilm={addFilm} />
   </>
 }
 
