@@ -6,20 +6,16 @@ const Films: FC<Props> = ({ films, updateList }) => {
     updateList(films.filter((_,index) => i !== index));
   };
   const [editText, setEditText] = useState({});
-  // @ts-ignore
-  const handleEdit = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
+  const handleEdit = (e: any) => {
     setEditText({
       ...editText,
       [e.target.name]: e.target.value
     });
-    console.log(editText);
   };
   const editFilm = (i:number) => {
-    // @ts-ignore
-    films[i] = editText[i];
-    updateList(films);
+    const tempFilms = [...films];
+    tempFilms[i] = editText[i];
+    updateList(tempFilms);
   };
 
   return <ul>{films.map((item,index) => 
@@ -28,7 +24,7 @@ const Films: FC<Props> = ({ films, updateList }) => {
       <input type="text" placeholder="edit"
             name={'' + index}
             // @ts-ignore
-            value={editText.index} 
+            value={editText.index}
             onChange={(e)=>handleEdit(e)}/>
 
       <span onClick={() => editFilm(index)}>{'\u2705'}</span>
