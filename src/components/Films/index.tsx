@@ -53,4 +53,4 @@ const Films: FC<Props> = ({ films, updateList }) => {
   );
 };
 
-export default Films; // євген ковальчук
+export default Films;

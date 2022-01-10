@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
-type Props = { addFilm: (t: string) => void };
-import styles from './AddFilm.module.scss'
 import { createUseStyles } from 'react-jss';
+import styles from './AddFilm.module.scss';
+type Props = { addFilm: (t: string) => void };
 
 const AddFilm: FC<Props> = ({ addFilm }) => {
   const [inputText, setInputText] = useState('');
