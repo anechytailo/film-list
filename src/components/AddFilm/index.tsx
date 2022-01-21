@@ -1,12 +1,14 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { createUseStyles } from 'react-jss';
+import { filmState } from '../../recoil/atoms/filmsAtom';
 import styles from './AddFilm.module.scss';
-type Props = { addFilm: (t: string) => void };
 
-const AddFilm: FC<Props> = ({ addFilm }) => {
+const AddFilm = () => {
+  const [films, setFilms] = useRecoilState(filmState);
   const [inputText, setInputText] = useState('');
   const handleAdd = () => {
-    addFilm(inputText);
+    setFilms([...films, inputText]);
     setInputText('');
   };
   const stylesUse = createUseStyles({
