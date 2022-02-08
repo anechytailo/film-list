@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import clsx from 'clsx'; // assign a class with condition `clsx(false && styles.li)`
 import { filmState } from '../../recoil/atoms/filmsAtom';
@@ -8,9 +8,21 @@ import styles from './FilmsList.module.scss';
 const Films = () => {
   const [films, updateList] = useRecoilState(filmState);
   const count = useRecoilValue(filmsCountSelector);
+  const fetchFilms = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/films.json');
+      const data = await response.json();
+      updateList(data.films);
+    } catch (e) {
+      console.error('ERROR GET /events', e);
+    }
+  };
+  useEffect(() => {
+    fetchFilms();
+  }, []);
 
   const deleteFilm = (i: number) => {
-    updateList(films.filter((_, index) => i !== index));
+    updateList(films.filter((_, index: number) => i !== index));
   };
   const [editText, setEditText] = useState({});
   const handleEdit = (e: any) => {
@@ -34,7 +46,7 @@ const Films = () => {
     <>
       <h1 className={styles.h1}>Films to Watch {count}</h1>
       <ul>
-        {films.map((item, index) => (
+        {films.map((item, index: number) => (
           <li key={index} className={clsx(true && styles.li)}>
             {item}
             <input
