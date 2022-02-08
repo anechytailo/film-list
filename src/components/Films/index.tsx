@@ -6,8 +6,6 @@ import { filmsCountSelector } from '../../recoil/selectors/filmsCountSelector';
 import styles from './FilmsList.module.scss';
 
 const Films = () => {
-  // const filmListApi = useRecoilValueLoadable(getFilms).contents;
-  // console.log(filmListApi);
   const [films, updateList] = useRecoilState(filmState);
   const count = useRecoilValue(filmsCountSelector);
   const fetchFilms = async () => {
